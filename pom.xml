@@ -67,13 +67,20 @@
 				<version>1.0.0</version>
 				<configuration>
 					<imageName>etcd:5000/test/${project.name}1</imageName>
+					
+					<!--配置私有仓库的认证信息 -->
+					<serverId>harbor-hub</serverId>
+					<registryUrl>http://etcd:5000</registryUrl>
+					
 					<!-- <imageName>${project.name}1</imageName> -->
 					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
 					<skipDockerBuild>false</skipDockerBuild>
+					
 					<imageTags>
 						<imageTag>${project.version}</imageTag>
-						<imageTag>latest</imageTag>
+						<!-- <imageTag>latest</imageTag> -->
 					</imageTags>
+					
 					<resources>
 						<resource>
 							<directory>${project.build.directory}</directory>
