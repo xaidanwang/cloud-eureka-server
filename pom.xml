@@ -5,7 +5,7 @@
 
 	<groupId>com.dcsoft</groupId>
 	<artifactId>cloud-eureka-server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>cloud-eureka-server</name>
@@ -54,6 +54,8 @@
 	</dependencyManagement>
 
 	<build>
+		<!-- 打包的名字 -->
+		<finalName>cloud-eureka-server</finalName>
 		<plugins>
 			<!-- spring boot 插件 -->
 			<plugin>
@@ -66,28 +68,43 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.0.0</version>
 				<configuration>
-					<imageName>etcd:5000/test/${project.name}1</imageName>
+				<!-- <imageName></imageName>该标签指定创建的imges的名字etcd对应docker运行的主机的ip
+				5000为私有仓库的服务端口号,/test 为项目名称 /${project.name}1 为镜像 -->
+					<imageName>harbor:5000/cloud/${project.name}</imageName>
 					
 					<!--配置私有仓库的认证信息 -->
+					<!-- <serverId>对应settings文件中的<id>harbor-hub</id>  -->
 					<serverId>harbor-hub</serverId>
-					<registryUrl>http://etcd:5000</registryUrl>
-					
+					<!--  私有仓库的地址-->
+					<registryUrl>http://harbor:5000</registryUrl>					
 					<!-- <imageName>${project.name}1</imageName> -->
+					<!-- <dockerDirectory> 指定Dockerfile文件的位置 -->
 					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
 					<skipDockerBuild>false</skipDockerBuild>
-					
+					<!-- 指定给镜像打包的名称 -->
 					<imageTags>
 						<imageTag>${project.version}</imageTag>
 						<!-- <imageTag>latest</imageTag> -->
 					</imageTags>
-					
+					<!-- 引入创建镜像的其他资源,该配至的作用是经target目录下的jar
+					包copy到与dockerFile一个文件夹下面 -->
 					<resources>
 						<resource>
+						<!-- 指定资源所在的文件夹 -->
 							<directory>${project.build.directory}</directory>
+							<!-- 指定要copy的资源 -->
 							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
 					<!-- <serverId>docker-hub</serverId> <registryUrl>https://index.docker.io/v1/</registryUrl> -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20.1</version>
+				<configuration>
+					<skipTest>true</skipTest>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -6,6 +6,6 @@
 #ENTRYPOINT ["java","-Dspring.profiles.active=cloud-eureka-server1","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 FROM ibmjava:8-sfj
 RUN mkdir /opt/app
-COPY cloud-eureka-server-0.0.1-SNAPSHOT.jar /opt/app
-EXPOSE 8762
-CMD ["java", "-Dspring.profiles.active=cloud-eureka-server1","-jar", "/opt/app/cloud-eureka-server-0.0.1-SNAPSHOT.jar"]
+COPY /cloud-eureka-server.jar /opt/app
+EXPOSE 8761
+CMD ["java", "-Dspring.profiles.active=cloud-eureka-server1","-jar", "/opt/app/cloud-eureka-server.jar"]
