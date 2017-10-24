@@ -76,7 +76,7 @@
 					<!-- <serverId>对应settings文件中的<id>harbor-hub</id>  -->
 					<serverId>harbor-hub</serverId>
 					<!--  私有仓库的地址-->
-					<registryUrl>http://harbor:5000</registryUrl>					
+					<registryUrl>http://192.168.26.135:5000</registryUrl>					
 					<!-- <imageName>${project.name}1</imageName> -->
 					<!-- <dockerDirectory> 指定Dockerfile文件的位置 -->
 					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
