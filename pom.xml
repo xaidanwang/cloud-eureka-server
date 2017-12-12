@@ -70,13 +70,13 @@
 				<configuration>
 				<!-- <imageName></imageName>该标签指定创建的imges的名字etcd对应docker运行的主机的ip
 				5000为私有仓库的服务端口号,/test 为项目名称 /${project.name}1 为镜像 -->
-					<imageName>192.168.26.135:5000/cloud/${project.name}</imageName>
+					<imageName>10.225.86.75/test/${project.name}</imageName>
 					
 					<!--配置私有仓库的认证信息 -->
 					<!-- <serverId>对应settings文件中的<id>harbor-hub</id>  -->
 					<serverId>harbor-hub</serverId>
 					<!--  私有仓库的地址-->
-					<registryUrl>http://192.168.26.135:5000</registryUrl>					
+					<registryUrl>http://10.225.86.75</registryUrl>					
 					<!-- <imageName>${project.name}1</imageName> -->
 					<!-- <dockerDirectory> 指定Dockerfile文件的位置 -->
 					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
